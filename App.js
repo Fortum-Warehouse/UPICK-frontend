@@ -3,7 +3,12 @@ import { createStackNavigator } from 'react-navigation-stack';
 import workorderScreen from './screens/workorderListScreen';
 
 const AppNavigator = createStackNavigator({
-  Home: { screen: workorderScreen },
+  Home: { 
+    screen: workorderScreen,
+    navigationOptions: (navigation) => ({
+      title: 'Workorder list',
+    }),
+  },
 });
 
 export default createAppContainer(AppNavigator)

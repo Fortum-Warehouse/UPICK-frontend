@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import data from '../dummyData';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 
 export default class WorkorderListScreen extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <FlatList data={data} renderItem={({ item }) => <WorkorderListItem workorder={item}/>}></FlatList>
+        <FlatList data={data} renderItem={({ item }) => <WorkorderListItem workorder={item} />}></FlatList>
       </View>
     )
   }
@@ -16,8 +16,20 @@ export default class WorkorderListScreen extends React.Component {
 
 class WorkorderListItem extends React.Component {
 
+  onPress() {
+    alert('clicked');
+  }
+
   render() {
-    return (<Text>{this.props.workorder.id}</Text>)
+    return (
+      <TouchableHighlight underlayColor='red' onPress={this.onPress}>
+        <View>
+          <Text style={styles.listItem}>
+            {this.props.workorder.id}
+          </Text>
+        </View>
+      </TouchableHighlight>
+    )
   }
 }
 
@@ -27,7 +39,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
+  },
+  listItem: {
+    fontSize: 50,
+    backgroundColor: 'green',
   },
 });
