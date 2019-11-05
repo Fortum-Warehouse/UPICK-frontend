@@ -4,11 +4,12 @@ import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-ha
 
 export default class WorkorderListScreen extends React.Component {
 
-  constructor(){
+  constructor() {
     super()
     this.state = {
       data: null,
-      isLoaded:false,
+      isLoaded: false,
+      visibleData: null,
     }
   }
 
@@ -17,29 +18,37 @@ export default class WorkorderListScreen extends React.Component {
     this.props.navigation.navigate('Home')
   }
 
-  componentDidMount(){
+  componentDidMount() {
     fetch('https://api.myjson.com/bins/w3fjk')
-    .then(res => res.json())
-    .then(res => {
-      this.setState({
-        data:res,
-        isLoaded:true
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          data: res,
+          isLoaded: true,
+          visibleData: res,
+        })
       })
-    })
   }
 
 
   render() {
     if (!this.state.isLoaded) {
       return <Text>Loading</Text>
-    } 
+    }
     return (
       <View style={styles.container}>
-        <TextInput/>
+        <TextInput onChangeText={text => {
+          this.setState({
+            visibleData: this.state.data.filter(workorder => {
+              return workorder.name.includes(text)
+            })
+          })
+          console.log(text);
+        }} />
         <FlatList
-          data={this.state.data}
-          renderItem={({ item }) => <WorkorderListItem workorder={item} onPress={this.onPress.bind(this, item.id)}/>}
-          //ItemSeparatorComponent = {<View style/>}
+          data={this.state.visibleData}
+          renderItem={({ item }) => <WorkorderListItem workorder={item} onPress={this.onPress.bind(this, item.id)} />}
+        //ItemSeparatorComponent = {<View style/>}
         />
       </View>
     )
@@ -53,7 +62,7 @@ class WorkorderListItem extends React.Component {
       <TouchableHighlight underlayColor='red' onPress={this.props.onPress}>
         <View>
           <Text style={styles.listItem}>
-            {this.props.workorder.id}
+            {this.props.workorder.name}
           </Text>
         </View>
       </TouchableHighlight>
