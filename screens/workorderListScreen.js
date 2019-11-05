@@ -1,21 +1,43 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import data from '../dummyData';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 
 export default class WorkorderListScreen extends React.Component {
+
+  constructor(){
+    super()
+    this.state = {
+      data: null,
+      isLoaded:false,
+    }
+  }
 
   onPress(id) {
     alert(`Pressed ${id}`);
     this.props.navigation.navigate('Home')
   }
 
+  componentDidMount(){
+    fetch('https://api.myjson.com/bins/w3fjk')
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        data:res,
+        isLoaded:true
+      })
+    })
+  }
+
+
   render() {
+    if (!this.state.isLoaded) {
+      return <Text>Loading</Text>
+    } 
     return (
       <View style={styles.container}>
         <TextInput/>
         <FlatList
-          data={data}
+          data={this.state.data}
           renderItem={({ item }) => <WorkorderListItem workorder={item} onPress={this.onPress.bind(this, item.id)}/>}
           //ItemSeparatorComponent = {<View style/>}
         />
