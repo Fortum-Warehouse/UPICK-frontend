@@ -14,8 +14,7 @@ export default class WorkorderListScreen extends React.Component {
   }
 
   onPress(id) {
-    alert(`Pressed ${id}`);
-    this.props.navigation.navigate('Workorder')
+    this.props.navigation.navigate('Workorder', {id})
   }
 
   componentDidMount() {
