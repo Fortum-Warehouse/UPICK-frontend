@@ -19,7 +19,7 @@ export default class WorkorderListScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://api.myjson.com/bins/w3fjk')
+    fetch('https://upickup.herokuapp.com/workorders')
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -62,7 +62,7 @@ class WorkorderListItem extends React.Component {
       <TouchableHighlight underlayColor='red' onPress={this.props.onPress}>
         <View>
           <Text style={styles.listItem}>
-            {this.props.workorder.name}
+            {`${this.props.workorder.id} ${this.props.workorder.items.length} items`}
           </Text>
         </View>
       </TouchableHighlight>
