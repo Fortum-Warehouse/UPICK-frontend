@@ -19,6 +19,7 @@ export default class WorkorderScreen extends React.Component {
     fetch(`https://upickup.herokuapp.com/workorders/${id}`)
       .then(res => res.json())
       .then(res => {
+        console.log(res)
         this.setState({
           data: res[0],
           isLoaded: true,
