@@ -41,10 +41,9 @@ export default class ItemListScreen extends React.Component {
         <TextInput onChangeText={text => {
           this.setState({
             visibleData: this.state.data.filter(item => {
-              return item.name.includes(text)
+              return item.name.toLowerCase().includes(text.toLowerCase())
             })
           })
-          console.log(text);
         }} />
         <FlatList
           data={this.state.visibleData}

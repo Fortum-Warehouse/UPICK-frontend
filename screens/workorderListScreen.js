@@ -39,10 +39,9 @@ export default class WorkorderListScreen extends React.Component {
         <TextInput onChangeText={text => {
           this.setState({
             visibleData: this.state.data.filter(workorder => {
-              return workorder.name.includes(text)
+              return workorder.name.toLowerCase().includes(text.toLowerCase())
             })
           })
-          console.log(text);
         }} />
         <FlatList
           data={this.state.visibleData}
