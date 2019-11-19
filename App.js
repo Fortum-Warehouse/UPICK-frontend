@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import WorkorderListScreen from './screens/workorderListScreen';
 import WorkorderList from './screens/workorderScreen';
 import BarcodeScanner from './screens/barcodeScan'
+import ItemList from './screens/itemList';
 
 const AppNavigator = createStackNavigator({
   Home: { 
@@ -17,6 +18,12 @@ const AppNavigator = createStackNavigator({
       title: 'Workorder'
     }),
   },
+  ItemList: {
+    screen: ItemList,
+    navigationOptions: (navigaton) => ({
+      title: 'Item list'
+    }),
+  },
   BarcodeScanner: { 
     screen: BarcodeScanner,
     navigationOptions: (navigation) => ({
@@ -25,7 +32,7 @@ const AppNavigator = createStackNavigator({
   },
 },
 {
-  initialRouteName: 'Home'
+  initialRouteName: 'ItemList'
 });
 
 export default createAppContainer(AppNavigator)
