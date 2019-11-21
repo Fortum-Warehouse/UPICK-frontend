@@ -22,12 +22,17 @@ const workorderStack = createStackNavigator({
   }
 },
 {
-  initialRouteName: 'List'
+  initialRouteName: 'List',
+  headerMode: 'none',
 });
 
 const scannerStack = createStackNavigator({
   Scanner: BarcodeScanner,
   Workorder: WorkorderList,
+}, 
+{
+  initialRouteName: 'Scanner',
+  headerMode: 'none',
 })
 
 const tabNavigator = createBottomTabNavigator({

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import Constants from 'expo-constants';
 
 export default class ItemListScreen extends React.Component {
 
@@ -75,9 +76,9 @@ class ItemListItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
   listItem: {
     fontSize: 50,

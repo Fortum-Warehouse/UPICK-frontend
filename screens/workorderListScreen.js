@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
 
 export default class WorkorderListScreen extends React.Component {
 
@@ -46,7 +47,6 @@ export default class WorkorderListScreen extends React.Component {
         <FlatList
           data={this.state.visibleData}
           renderItem={({ item }) => <WorkorderListItem workorder={item} onPress={this.onPress.bind(this, item.id)} />}
-        //ItemSeparatorComponent = {<View style/>}
         />
       </View>
     )
@@ -73,14 +73,13 @@ class WorkorderListItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
   listItem: {
-    fontSize: 50,
-    backgroundColor: 'green',
+    fontSize: 40,
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 2,
   },
 });

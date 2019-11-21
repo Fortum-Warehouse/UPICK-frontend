@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import Constants from 'expo-constants';
 
 export default class BarcodeScannerExample extends React.Component {
   state = {
@@ -29,11 +30,7 @@ export default class BarcodeScannerExample extends React.Component {
     }
     return (
       <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-        }}>
+        style={styles.container}>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
@@ -52,3 +49,12 @@ export default class BarcodeScannerExample extends React.Component {
     this.props.navigation.navigate('Workorder', {id: data})
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
+  },
+});
