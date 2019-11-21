@@ -32,7 +32,7 @@ const AppNavigator = createStackNavigator({
   },
 },
 {
-  initialRouteName: 'ItemList'
+  initialRouteName: 'Home'
 });
 
 export default createAppContainer(AppNavigator)
