@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class WorkorderListScreen extends React.Component {
 
@@ -14,7 +16,7 @@ export default class WorkorderListScreen extends React.Component {
   }
 
   onPress(id) {
-    this.props.navigation.navigate('Workorder', {id})
+    this.props.navigation.navigate('Workorder', { id })
   }
 
   componentDidMount() {
@@ -46,7 +48,6 @@ export default class WorkorderListScreen extends React.Component {
         <FlatList
           data={this.state.visibleData}
           renderItem={({ item }) => <WorkorderListItem workorder={item} onPress={this.onPress.bind(this, item.id)} />}
-        //ItemSeparatorComponent = {<View style/>}
         />
       </View>
     )
@@ -57,13 +58,19 @@ class WorkorderListItem extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor='red' onPress={this.props.onPress}>
-        <View>
-          <Text style={styles.listItem}>
-            {`${this.props.workorder.id} ${this.props.workorder.items.length} items`}
-          </Text>
-        </View>
-      </TouchableHighlight>
+
+      <View style={styles.listItem}>
+        <Text style={styles.listText}>
+          {`${this.props.workorder.id}`}
+        </Text>
+        <TouchableHighlight underlayColor='E3E3E3' onPress={this.props.onPress}>
+          <View style={styles.iconContainer}>
+            <MaterialCommunityIcons style={styles.center} name='dropbox' size={35}/>
+            <Text style={styles.center}>{`${this.props.workorder.items.length} items`}</Text>
+          </View>
+          </TouchableHighlight>
+      </View>
+
     )
   }
 }
@@ -73,14 +80,24 @@ class WorkorderListItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
   listItem: {
-    fontSize: 50,
-    backgroundColor: 'green',
+    flex: 1,
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 2,
+    flexDirection: "row"
   },
+  listText: {
+    fontSize: 35,
+    marginRight:'auto'
+  },
+  iconContainer: {
+    marginRight:20
+  },
+  center:{
+    alignSelf:"center"
+  }
 });

@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import Constants from 'expo-constants';
+import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 export default class ItemListScreen extends React.Component {
 
@@ -48,7 +50,6 @@ export default class ItemListScreen extends React.Component {
         <FlatList
           data={this.state.visibleData}
           renderItem={({ item }) => <ItemListItem item={item} onPress={this.onPress.bind(this, item.url)} />}
-        //ItemSeparatorComponent = {<View style/>}
         />
       </View>
     )
@@ -59,7 +60,7 @@ class ItemListItem extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor='red' onPress={this.props.onPress}>
+      <TouchableHighlight underlayColor='#E3E3E3' onPress={this.props.onPress}>
         <View>
           <Text style={styles.listItem}>
             {`${this.props.item.name} ${this.props.item.location}`}
@@ -75,13 +76,12 @@ class ItemListItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
   },
   listItem: {
-    fontSize: 50,
-    backgroundColor: 'green',
+    fontSize: 35,
     borderColor: 'black',
     borderWidth: 1,
   },
