@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 import Constants from 'expo-constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -31,10 +31,13 @@ export default class WorkorderListScreen extends React.Component {
       })
   }
 
-
   render() {
     if (!this.state.isLoaded) {
-      return <Text>Loading</Text>
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size='large'/>
+        </View>
+      )
     }
     return (
       <View style={styles.container}>
@@ -65,10 +68,10 @@ class WorkorderListItem extends React.Component {
         </Text>
         <TouchableHighlight underlayColor='E3E3E3' onPress={this.props.onPress}>
           <View style={styles.iconContainer}>
-            <MaterialCommunityIcons style={styles.center} name='dropbox' size={35}/>
+            <MaterialCommunityIcons style={styles.center} name='dropbox' size={35} />
             <Text style={styles.center}>{`${this.props.workorder.items.length} items`}</Text>
           </View>
-          </TouchableHighlight>
+        </TouchableHighlight>
       </View>
 
     )
@@ -92,12 +95,12 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 35,
-    marginRight:'auto'
+    marginRight: 'auto'
   },
   iconContainer: {
-    marginRight:20
+    marginRight: 20
   },
-  center:{
-    alignSelf:"center"
+  center: {
+    alignSelf: "center"
   }
 });

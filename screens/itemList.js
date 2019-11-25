@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default class ItemListScreen extends React.Component {
 
@@ -36,7 +36,9 @@ export default class ItemListScreen extends React.Component {
 
   render() {
     if (!this.state.isLoaded) {
-      return <Text>Loading</Text>
+      return (<View style={styles.container}>
+        <ActivityIndicator size='large' />
+      </View>)
     }
     return (
       <View style={styles.container}>
