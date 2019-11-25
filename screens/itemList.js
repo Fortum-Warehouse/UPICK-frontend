@@ -26,7 +26,7 @@ export default class ItemListScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
-          data: res,
+          data: res.sort((a,b) => a.name>b.name ? 1:-1),
           isLoaded: true,
           visibleData: res,
         })
