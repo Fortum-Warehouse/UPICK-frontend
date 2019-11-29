@@ -44,7 +44,7 @@ export default class WorkorderListScreen extends React.Component {
         <TextInput onChangeText={text => {
           this.setState({
             visibleData: this.state.data.filter(workorder => {
-              return workorder.name.toLowerCase().includes(text.toLowerCase())
+              return workorder.id.includes(text.toLowerCase())
             })
           })
         }} />

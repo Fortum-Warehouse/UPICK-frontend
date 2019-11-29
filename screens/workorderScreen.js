@@ -16,7 +16,7 @@ export default class WorkorderScreen extends React.Component {
       id: null,
       modalVisible: false,
       modalItem: null,
-      picker:"Select issue"
+      picker: "Select issue"
     }
   }
 
@@ -42,7 +42,7 @@ export default class WorkorderScreen extends React.Component {
 
   setModalVisible(visible, item) {
     console.log('test')
-    this.setState({ modalVisible: visible, modalItem: item, picker:"Select issue" });
+    this.setState({ modalVisible: visible, modalItem: item, picker: "Select issue" });
   }
 
   render() {
@@ -62,28 +62,28 @@ export default class WorkorderScreen extends React.Component {
             <View>
               <Text>Submit issue for:</Text>
               <Text>{this.state.modalItem}</Text>
-              <Picker 
-              selectedValue={this.state.picker}
-              onValueChange ={(itemValue, itemPosition) => {
-                this.setState({picker: itemValue})
-              }}
+              <Picker
+                selectedValue={this.state.picker}
+                onValueChange={(itemValue, itemPosition) => {
+                  this.setState({ picker: itemValue })
+                }}
               >
-                <Picker.Item label='Item not at location' value='Item not at location'/>
-                <Picker.Item label='Not enough in stock' value='Not enough in stock'/>
-                <Picker.Item label='Item is damaged' value='Item is damaged'/>
+                <Picker.Item label='Item not at location' value='Item not at location' />
+                <Picker.Item label='Not enough in stock' value='Not enough in stock' />
+                <Picker.Item label='Item is damaged' value='Item is damaged' />
               </Picker>
               <Button onPress={() => {
                 console.log('close')
                 this.setModalVisible(false, null);
               }}
-              title='Cancel'
+                title='Cancel'
               />
               <Button
-              onPress={() => {
-                console.log('close')
-                this.setModalVisible(false, null);
-              }}
-              title='Send'
+                onPress={() => {
+                  console.log('close')
+                  this.setModalVisible(false, null);
+                }}
+                title='Send'
               />
             </View>
           </View>
@@ -100,12 +100,22 @@ export default class WorkorderScreen extends React.Component {
 }
 
 class WorkorderItem extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      done: false
+    }
+  }
 
   render() {
+    const a = this.state.done ? styles.listItemDone :styles.listItem
     return (
-      <View style={styles.listItem}>
-        <Text style={styles.name}>
-          {this.props.item.item.name}
+      <View style={a}>
+          <Text style={styles.name} onPress={()=> this.setState({done: !this.state.done})}>
+            {this.props.item.item.name}
+          </Text>
+        <Text style={styles.qty}>
+          {this.props.item.qty}
         </Text>
         <View style={styles.icons}>
           <TouchableHighlight underlayColor='gray' onPress={this.props.onPress}>
@@ -146,6 +156,18 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5
   },
+  listItemDone: {
+    flexDirection: "row",
+    fontSize: 35,
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    paddingLeft: 5,
+    paddingRight: 5,
+    backgroundColor:"#bdffdb"
+  },
   name: {
     fontSize: 35,
     flex: 8
@@ -160,5 +182,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: "center",
     alignItems: 'center',
+  },
+  qty: {
+    fontSize: 40
   }
 });
