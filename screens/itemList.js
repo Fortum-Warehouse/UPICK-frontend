@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export default class ItemListScreen extends React.Component {
 
@@ -26,7 +26,7 @@ export default class ItemListScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
-          data: res,
+          data: res.sort((a,b) => a.name>b.name ? 1:-1),
           isLoaded: true,
           visibleData: res,
         })
@@ -36,7 +36,9 @@ export default class ItemListScreen extends React.Component {
 
   render() {
     if (!this.state.isLoaded) {
-      return <Text>Loading</Text>
+      return (<View style={styles.container}>
+        <ActivityIndicator size='large' />
+      </View>)
     }
     return (
       <View style={styles.container}>
@@ -60,13 +62,19 @@ class ItemListItem extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor='#E3E3E3' onPress={this.props.onPress}>
-        <View>
-          <Text style={styles.listItem}>
-            {`${this.props.item.name} ${this.props.item.location}`}
-          </Text>
-        </View>
-      </TouchableHighlight>
+
+      <View style={styles.listItem}>
+        <Text style={styles.name}>
+          {this.props.item.name}
+        </Text>
+        <TouchableHighlight underlayColor='#E3E3E3' onPress={this.props.onPress}>
+          <View style={styles.icon}>
+            <MaterialIcons name='location-on' size={35} />
+            <Text>{this.props.item.location}</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+
     )
   }
 }
@@ -81,8 +89,24 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   listItem: {
+    flexDirection: "row",
     fontSize: 35,
     borderColor: 'black',
     borderWidth: 1,
+    alignItems: "center",
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    paddingLeft:5,
+    paddingRight:5
   },
+  name: {
+    fontSize: 35,
+    flex: 8
+  },
+  icon: {
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: "center",
+    alignItems: 'center',
+  }
 });
