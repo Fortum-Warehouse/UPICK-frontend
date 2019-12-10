@@ -63,6 +63,7 @@ class WorkorderListItem extends React.Component {
     return (
 
       <View style={styles.listItem}>
+        <Text style={styles.listItemLabel}>Workorder</Text>
         <Text style={styles.listText}>
           {`${this.props.workorder.id}`}
         </Text>
@@ -89,18 +90,25 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flex: 1,
-    borderColor: 'black',
-    borderWidth: 2,
-    flexDirection: "row"
+    borderBottomColor: '#F0F0F0',
+    borderTopColor: '#fff',
+    borderWidth: 1,
+    flexDirection: "row",
+    paddingTop: 8,
+    paddingBottom: 8
   },
   listText: {
-    fontSize: 35,
-    marginRight: 'auto'
+    fontSize: 16,
+    marginRight:'auto'
   },
   iconContainer: {
     marginRight: 20
   },
-  center: {
-    alignSelf: "center"
+  center:{
+    alignSelf:"center"
+  },
+  listItemLabel: {
+    fontSize: 12,
+    color: '#07051D65'
   }
 });
