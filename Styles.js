@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     margin: 4
   },
+  name: {
+    maxWidth: 200
+  },
   workorderInfo: {
     flex: 1,
     flexDirection: "column",
@@ -79,53 +82,34 @@ const styles = StyleSheet.create({
 })
 
 /*const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'stretch',
-      justifyContent: 'center',
-      marginTop: Constants.statusBarHeight,
-    },
-    listItem: {
-      flexDirection: "row",
-      fontSize: 35,
-      borderColor: 'black',
-      borderWidth: 1,
-      alignItems: "center",
-      justifyContent: 'space-between',
-      flexWrap: 'nowrap',
-      paddingLeft: 5,
-      paddingRight: 5
-    },
-    listItemDone: {
-      flexDirection: "row",
-      fontSize: 35,
-      borderColor: 'black',
-      borderWidth: 1,
-      alignItems: "center",
-      justifyContent: 'space-between',
-      flexWrap: 'nowrap',
-      paddingLeft: 5,
-      paddingRight: 5,
-      backgroundColor:"#bdffdb"
-    },
-    name: {
-      fontSize: 35,
-      flex: 8
-    },
-    icons: {
-      flex: 2,
-      flexDirection: 'column',
-      justifyContent: "center",
-      alignItems: 'center',
-    },
-    icon: {
-      flexDirection: 'column',
-      justifyContent: "center",
-      alignItems: 'center',
-    },
-    qty: {
-      fontSize: 40
-    }
-  });*/
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    marginTop: Constants.statusBarHeight,
+  },
+  listItem: {
+    flexDirection: "row",
+    fontSize: 35,
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    paddingLeft:5,
+    paddingRight:5
+  },
+  name: {
+    fontSize: 35,
+    flex: 8
+  },
+  icon: {
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: "center",
+    alignItems: 'center',
+  }
+});
+*/
 
 export { styles }
