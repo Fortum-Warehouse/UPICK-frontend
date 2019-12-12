@@ -4,6 +4,8 @@ import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-ha
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
 import { MaterialIcons } from '@expo/vector-icons'
+import { styles } from '../Styles.js'
+
 
 export default class ItemListScreen extends React.Component {
 
@@ -68,10 +70,7 @@ class ItemListItem extends React.Component {
           {this.props.item.name}
         </Text>
         <TouchableHighlight underlayColor='#E3E3E3' onPress={this.props.onPress}>
-          <View style={styles.icon}>
-            <MaterialIcons name='location-on' size={35} />
-            <Text>{this.props.item.location}</Text>
-          </View>
+            <Text style={styles.bodyBold}>{this.props.item.location}</Text>
         </TouchableHighlight>
       </View>
 
@@ -81,32 +80,3 @@ class ItemListItem extends React.Component {
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    marginTop: Constants.statusBarHeight,
-  },
-  listItem: {
-    flexDirection: "row",
-    fontSize: 35,
-    borderColor: 'black',
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: 'space-between',
-    flexWrap: 'nowrap',
-    paddingLeft:5,
-    paddingRight:5
-  },
-  name: {
-    fontSize: 35,
-    flex: 8
-  },
-  icon: {
-    flex: 2,
-    flexDirection: 'column',
-    justifyContent: "center",
-    alignItems: 'center',
-  }
-});
