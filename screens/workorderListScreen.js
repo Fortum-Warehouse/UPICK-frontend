@@ -1,15 +1,15 @@
-import React from "react"
-import { Text, View, ActivityIndicator } from "react-native"
+import React from 'react'
+import { Text, View, ActivityIndicator } from 'react-native'
 import {
   FlatList,
   TouchableHighlight,
   TextInput
-} from "react-native-gesture-handler"
-import { MaterialCommunityIcons } from "@expo/vector-icons"
+} from 'react-native-gesture-handler'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { styles } from '../Styles.js'
 
 export default class WorkorderListScreen extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       data: null,
@@ -18,12 +18,12 @@ export default class WorkorderListScreen extends React.Component {
     }
   }
 
-  onPress(id) {
-    this.props.navigation.navigate("Workorder", { id })
+  onPress (id) {
+    this.props.navigation.navigate('Workorder', { id })
   }
 
-  componentDidMount() {
-    fetch("https://upickup.herokuapp.com/workorders")
+  componentDidMount () {
+    fetch('https://upickup.herokuapp.com/workorders')
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -34,7 +34,7 @@ export default class WorkorderListScreen extends React.Component {
       })
   }
 
-  render() {
+  render () {
     if (!this.state.isLoaded) {
       return (
         <View style={styles.container}>
@@ -68,7 +68,7 @@ export default class WorkorderListScreen extends React.Component {
 }
 
 class WorkorderListItem extends React.Component {
-  render() {
+  render () {
     return (
       <View style={styles.listItem}>
         <View style={styles.workorderInfo}>

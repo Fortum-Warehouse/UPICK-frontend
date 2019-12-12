@@ -1,42 +1,37 @@
-import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
-import Constants from 'expo-constants';
-import { MaterialIcons } from '@expo/vector-icons'
+import React from 'react'
+import { Text, View, ActivityIndicator } from 'react-native'
+import { FlatList, TouchableHighlight, TextInput } from 'react-native-gesture-handler'
+import * as WebBrowser from 'expo-web-browser'
 import { styles } from '../Styles.js'
 
-
 export default class ItemListScreen extends React.Component {
-
-  constructor() {
+  constructor () {
     super()
     this.state = {
       data: null,
       isLoaded: false,
-      visibleData: null,
+      visibleData: null
     }
   }
 
-  onPress(url) {
+  onPress (url) {
     console.log(url)
     WebBrowser.openBrowserAsync(url)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://upickup.herokuapp.com/items')
       .then(res => res.json())
       .then(res => {
         this.setState({
-          data: res.sort((a,b) => a.name>b.name ? 1:-1),
+          data: res.sort((a, b) => a.name > b.name ? 1 : -1),
           isLoaded: true,
-          visibleData: res,
+          visibleData: res
         })
       })
   }
 
-
-  render() {
+  render () {
     if (!this.state.isLoaded) {
       return (<View style={styles.container}>
         <ActivityIndicator size='large' />
@@ -61,8 +56,7 @@ export default class ItemListScreen extends React.Component {
 }
 
 class ItemListItem extends React.Component {
-
-  render() {
+  render () {
     return (
 
       <View style={styles.listItem}>
@@ -70,13 +64,10 @@ class ItemListItem extends React.Component {
           {this.props.item.name}
         </Text>
         <TouchableHighlight underlayColor='#E3E3E3' onPress={this.props.onPress}>
-            <Text style={styles.bodyBold}>{this.props.item.location}</Text>
+          <Text style={styles.bodyBold}>{this.props.item.location}</Text>
         </TouchableHighlight>
       </View>
 
     )
   }
 }
-
-
-
