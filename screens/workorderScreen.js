@@ -1,25 +1,22 @@
-import React from "react"
+import React from 'react'
 import {
-  StyleSheet,
   Text,
   View,
   ActivityIndicator,
   Modal,
   Button,
   Picker
-} from "react-native"
+} from 'react-native'
 import {
   FlatList,
-  TouchableHighlight,
-  TextInput
-} from "react-native-gesture-handler"
-import * as WebBrowser from "expo-web-browser"
-import Constants from "expo-constants"
-import { MaterialIcons } from "@expo/vector-icons"
-import { styles } from "../Styles.js"
+  TouchableHighlight
+} from 'react-native-gesture-handler'
+import * as WebBrowser from 'expo-web-browser'
+import { MaterialIcons } from '@expo/vector-icons'
+import { styles } from '../Styles.js'
 
 export default class WorkorderScreen extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       data: null,
@@ -27,12 +24,12 @@ export default class WorkorderScreen extends React.Component {
       id: null,
       modalVisible: false,
       modalItem: null,
-      picker: "Select issue"
+      picker: 'Select issue'
     }
   }
 
-  componentDidMount() {
-    const id = this.props.navigation.getParam("id", "error")
+  componentDidMount () {
+    const id = this.props.navigation.getParam('id', 'error')
     fetch(`https://upickup.herokuapp.com/workorders/${id}`)
       .then(res => res.json())
       .then(res => {
@@ -48,21 +45,21 @@ export default class WorkorderScreen extends React.Component {
       })
   }
 
-  onPressLoc(url) {
+  onPressLoc (url) {
     console.log(url)
     WebBrowser.openBrowserAsync(url)
   }
 
-  setModalVisible(visible, item) {
-    console.log("test")
+  setModalVisible (visible, item) {
+    console.log('test')
     this.setState({
       modalVisible: visible,
       modalItem: item,
-      picker: "Select issue"
+      picker: 'Select issue'
     })
   }
 
-  render() {
+  render () {
     if (!this.state.isLoaded) {
       return (
         <View style={styles.container}>
@@ -99,14 +96,14 @@ export default class WorkorderScreen extends React.Component {
               </Picker>
               <Button
                 onPress={() => {
-                  console.log("close")
+                  console.log('close')
                   this.setModalVisible(false, null)
                 }}
                 title="Cancel"
               />
               <Button
                 onPress={() => {
-                  console.log("close")
+                  console.log('close')
                   this.setModalVisible(false, null)
                 }}
                 title="Send"
@@ -131,14 +128,14 @@ export default class WorkorderScreen extends React.Component {
 }
 
 class WorkorderItem extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       done: false
     }
   }
 
-  render() {
+  render () {
     const a = this.state.done ? styles.listItemDone : styles.listItem
     return (
       <View style={a}>
